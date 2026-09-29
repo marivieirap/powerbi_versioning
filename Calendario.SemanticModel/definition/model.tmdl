@@ -1,0 +1,21 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Calendar"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Calendar
+ref table DateTableTemplate_7b6726f2-7bf2-4872-ac20-b8d552b2472e
+ref table LocalDateTable_0d40e6dd-c7ed-450e-bb2c-b66afb83fd31
+
+ref cultureInfo pt-BR
+

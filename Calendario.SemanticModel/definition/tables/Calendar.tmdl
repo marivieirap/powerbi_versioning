@@ -1,0 +1,66 @@
+table Calendar
+	lineageTag: e034755f-fbf3-462e-b812-32399c6e4549
+
+	column Data
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c766dc72-053c-4fba-8c6e-68c59ad91e24
+		summarizeBy: none
+		sourceColumn: Data
+
+		variation Variation
+			isDefault
+			relationship: 780e48ca-5e70-4e3c-8727-8d92635b9748
+			defaultHierarchy: LocalDateTable_0d40e6dd-c7ed-450e-bb2c-b66afb83fd31.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: e78045ff-e737-42d8-b78e-5643edb1066a
+		summarizeBy: sum
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column MesNum
+		dataType: int64
+		formatString: 0
+		lineageTag: d8a5eaa1-6cf9-43a0-b5ac-30f8e6c9f82c
+		summarizeBy: sum
+		sourceColumn: MesNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes
+		dataType: string
+		lineageTag: 9f6d632d-8782-4ac9-bba8-68502308b710
+		summarizeBy: none
+		sourceColumn: Mes
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendar = m
+		mode: import
+		source =
+				let
+				    AnoAtual = Date.Year(DateTime.LocalNow()),
+				    DataInicial = #date(AnoAtual, 1, 1),
+				    DataFinal   = #date(AnoAtual+2, 12, 31),
+				    QtdDias     = Duration.Days(DataFinal - DataInicial) + 1,
+				
+				    Datas   = List.Dates(DataInicial, QtdDias, #duration(1, 0, 0, 0)),
+				    Tabela  = Table.FromList(Datas, Splitter.SplitByNothing(), {"Data"}, null, ExtraValues.Error),
+				    Tipada  = Table.TransformColumnTypes(Tabela, {{"Data", type date}}),
+				
+				    Ano     = Table.AddColumn(Tipada, "Ano", each Date.Year([Data]), Int64.Type),
+				    MesNum  = Table.AddColumn(Ano, "MesNum", each Date.Month([Data]), Int64.Type),
+				    Mes     = Table.AddColumn(MesNum, "Mes", each Text.Proper(Date.MonthName([Data], "pt-BR")), type text)
+				in
+				    Mes
+
+	annotation PBI_ResultType = Table
+

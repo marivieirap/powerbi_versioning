@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Calendario"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a9759c63-663a-4dab-8a53-1a4ccf5f5f4a"
+  }
+}

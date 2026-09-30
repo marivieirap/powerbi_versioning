@@ -11,7 +11,7 @@ annotation __PBI_TimeIntelligenceEnabled = 1
 
 annotation PBI_QueryOrder = ["Calendar"]
 
-annotation PBI_ProTooling = ["DevMode"]
+annotation PBI_ProTooling = ["DevMode","TMDL-Extension"]
 
 ref table Calendar
 ref table DateTableTemplate_7b6726f2-7bf2-4872-ac20-b8d552b2472e

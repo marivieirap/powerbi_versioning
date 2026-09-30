@@ -3,7 +3,7 @@ table Calendar
 
 	column Data
 		dataType: dateTime
-		formatString: Long Date
+		formatString: Short Date
 		lineageTag: c766dc72-053c-4fba-8c6e-68c59ad91e24
 		summarizeBy: none
 		sourceColumn: Data
@@ -40,6 +40,27 @@ table Calendar
 		lineageTag: 9f6d632d-8782-4ac9-bba8-68502308b710
 		summarizeBy: none
 		sourceColumn: Mes
+		sortByColumn: MesNum
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia
+		dataType: double
+		lineageTag: 38d28b00-778a-44bc-af23-21a311d1618d
+		summarizeBy: sum
+		sourceColumn: Dia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Nome do dia'
+		dataType: string
+		lineageTag: a33eece1-d2ad-4f89-a47d-c91905272579
+		summarizeBy: none
+		sourceColumn: Nome do dia
 
 		annotation SummarizationSetBy = Automatic
 
@@ -58,9 +79,11 @@ table Calendar
 				
 				    Ano     = Table.AddColumn(Tipada, "Ano", each Date.Year([Data]), Int64.Type),
 				    MesNum  = Table.AddColumn(Ano, "MesNum", each Date.Month([Data]), Int64.Type),
-				    Mes     = Table.AddColumn(MesNum, "Mes", each Text.Proper(Date.MonthName([Data], "pt-BR")), type text)
+				    Mes     = Table.AddColumn(MesNum, "Mes", each Text.Proper(Date.MonthName([Data], "pt-BR")), type text),
+				  #"Dia inserido" = Table.AddColumn(Mes, "Dia", each Date.Day([Data]), type nullable number),
+				  #"Nome do dia inserido" = Table.AddColumn(#"Dia inserido", "Nome do dia", each Date.DayOfWeekName([Data], "pt-BR"), type nullable text)
 				in
-				    Mes
+				    #"Nome do dia inserido"
 
 	annotation PBI_ResultType = Table
 

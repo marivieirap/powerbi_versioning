@@ -9,13 +9,15 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["Calendar"]
+annotation PBI_QueryOrder = ["tb_Calendar","tb_Feriados","_measures"]
 
 annotation PBI_ProTooling = ["DevMode","TMDL-Extension"]
 
-ref table Calendar
+ref table tb_Calendar
 ref table DateTableTemplate_7b6726f2-7bf2-4872-ac20-b8d552b2472e
 ref table LocalDateTable_0d40e6dd-c7ed-450e-bb2c-b66afb83fd31
+ref table _measures
+ref table tb_Feriados
 
 ref cultureInfo pt-BR
 

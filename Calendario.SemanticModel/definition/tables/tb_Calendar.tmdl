@@ -1,4 +1,4 @@
-table Calendar
+table tb_Calendar
 	lineageTag: e034755f-fbf3-462e-b812-32399c6e4549
 
 	column Data
@@ -64,7 +64,7 @@ table Calendar
 
 		annotation SummarizationSetBy = Automatic
 
-	partition Calendar = m
+	partition tb_Calendar = m
 		mode: import
 		source =
 				let

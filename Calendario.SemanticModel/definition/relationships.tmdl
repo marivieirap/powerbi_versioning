@@ -1,5 +1,11 @@
 relationship 780e48ca-5e70-4e3c-8727-8d92635b9748
 	joinOnDateBehavior: datePartOnly
-	fromColumn: Calendar.Data
+	fromColumn: tb_Calendar.Data
 	toColumn: LocalDateTable_0d40e6dd-c7ed-450e-bb2c-b66afb83fd31.Date
+
+relationship 532dc229-7f29-c2d1-ed3b-5e5cd150c2fe
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: tb_Feriados.Data
+	toColumn: tb_Calendar.Data
 

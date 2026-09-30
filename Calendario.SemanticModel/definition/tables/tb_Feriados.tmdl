@@ -1,0 +1,223 @@
+table tb_Feriados
+	lineageTag: b2090812-3d85-4566-bfe4-5c9e1eacc201
+
+	column Data
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 69547949-f5bf-4ebc-b068-9048b2bb1e67
+		summarizeBy: none
+		sourceColumn: Data
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Nome_Feriado
+		dataType: string
+		lineageTag: 1e0b962c-403b-436e-840f-10f370e6a229
+		summarizeBy: none
+		sourceColumn: Nome_Feriado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo
+		dataType: string
+		lineageTag: 115c5dd5-6ace-4292-a211-d10dbc8c9851
+		summarizeBy: none
+		sourceColumn: Tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Abrangencia
+		dataType: string
+		lineageTag: f7af4d67-77b0-4514-8c73-ad7189fdb67d
+		summarizeBy: none
+		sourceColumn: Abrangencia
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tb_Feriados = m
+		mode: import
+		source = ```
+				let
+				    // ==========================================
+				    // CONFIGURAÇÃO
+				    // ==========================================
+				
+				    AnoAtual = Date.Year(DateTime.LocalNow()),
+				    AnoInicial = (AnoAtual),
+				    AnoFinal   = (AnoAtual+2),
+				
+				    Anos = {AnoInicial..AnoFinal},
+				
+				    // ==========================================
+				    // FERIADOS NACIONAIS FIXOS
+				    // ==========================================
+				
+				    FeriadosFixos = {
+				        [Mes=1, Dia=1, Nome="Confraternização Universal", Tipo="Feriado", Abrangencia="Nacional"],
+				        [Mes=4, Dia=21, Nome="Tiradentes", Tipo="Feriado", Abrangencia="Nacional"],
+				        [Mes=5, Dia=1, Nome="Dia Mundial do Trabalho", Tipo="Feriado", Abrangencia="Nacional"],
+				        [Mes=9, Dia=7, Nome="Independência do Brasil", Tipo="Feriado", Abrangencia="Nacional"],
+				        [Mes=10, Dia=12, Nome="Nossa Senhora Aparecida", Tipo="Feriado", Abrangencia="Nacional"],
+				        [Mes=11, Dia=2, Nome="Finados", Tipo="Feriado", Abrangencia="Nacional"],
+				        [Mes=11, Dia=15, Nome="Proclamação da República", Tipo="Feriado", Abrangencia="Nacional"],
+				        [Mes=11, Dia=20, Nome="Dia da Consciência Negra", Tipo="Feriado", Abrangencia="Nacional"],
+				        [Mes=12, Dia=25, Nome="Natal", Tipo="Feriado", Abrangencia="Nacional"]
+				    },
+				
+				    // Cria os registros de cada ano
+				    RegistrosFixos = List.Combine(
+				        List.Transform(
+				            Anos,
+				            (Ano) =>
+				                List.Transform(
+				                    FeriadosFixos,
+				                    (F) =>
+				                        [
+				                            Data = #date(Ano, F[Mes], F[Dia]),
+				                            Nome_Feriado = F[Nome],
+				                            Tipo = F[Tipo],
+				                            Abrangencia = F[Abrangencia]
+				                        ]
+				                )
+				        )
+				    ),
+				
+				    TabelaFixos = Table.FromRecords(RegistrosFixos),
+				
+				    // ==========================================
+				    // CÁLCULO DA PÁSCOA
+				    // ==========================================
+				
+				    CalculaPascoa = (Ano as number) as date =>
+				        let
+				            a = Number.Mod(Ano, 19),
+				            b = Number.IntegerDivide(Ano, 100),
+				            c = Number.Mod(Ano, 100),
+				            d = Number.IntegerDivide(b, 4),
+				            e = Number.Mod(b, 4),
+				            f = Number.IntegerDivide(b + 8, 25),
+				            g = Number.IntegerDivide(b - f + 1, 3),
+				            h = Number.Mod(19 * a + b - d - g + 15, 30),
+				            i = Number.IntegerDivide(c, 4),
+				            k = Number.Mod(c, 4),
+				            l = Number.Mod(32 + 2 * e + 2 * i - h - k, 7),
+				            m = Number.IntegerDivide(a + 11 * h + 22 * l, 451),
+				            Mes = Number.IntegerDivide(h + l - 7 * m + 114, 31),
+				            Dia = Number.Mod(h + l - 7 * m + 114, 31) + 1
+				        in
+				            #date(Ano, Mes, Dia),
+				
+				    // ==========================================
+				    // FERIADOS / PONTOS FACULTATIVOS MÓVEIS
+				    // ==========================================
+				
+				    RegistrosMoveis = List.Combine(
+				        List.Transform(
+				            Anos,
+				            (Ano) =>
+				                let
+				                    Pascoa = CalculaPascoa(Ano)
+				                in
+				                    {
+				                        
+				                        [
+				                            Data = Date.AddDays(Pascoa, -47),
+				                            Nome_Feriado = "Carnaval",
+				                            Tipo = "Ponto Facultativo",
+				                            Abrangencia = "Federal"
+				                        ],
+				                        [
+				                            Data = Date.AddDays(Pascoa, -46),
+				                            Nome_Feriado = "Quarta-feira de Cinzas",
+				                            Tipo = "Ponto Facultativo",
+				                            Abrangencia = "Federal"
+				                        ],
+				                        [
+				                            Data = Date.AddDays(Pascoa, -2),
+				                            Nome_Feriado = "Paixão de Cristo",
+				                            Tipo = "Feriado",
+				                            Abrangencia = "Nacional"
+				                        ],
+				                        [
+				                            Data = Pascoa,
+				                            Nome_Feriado = "Páscoa",
+				                            Tipo = "Feriado",
+				                            Abrangencia = "Religiosa"
+				                        ],
+				                        [
+				                            Data = Date.AddDays(Pascoa, 60),
+				                            Nome_Feriado = "Corpus Christi",
+				                            Tipo = "Ponto Facultativo",
+				                            Abrangencia = "Federal"
+				                        ]
+				                    }
+				        )
+				    ),
+				
+				    TabelaMoveis = Table.FromRecords(RegistrosMoveis),
+				
+				    // ==========================================
+				    // PONTOS FACULTATIVOS FIXOS
+				    // ==========================================
+				
+				    RegistrosPontosFixos = List.Combine(
+				        List.Transform(
+				            Anos,
+				            (Ano) =>
+				                {
+				                    [
+				                        Data = #date(Ano, 10, 28),
+				                        Nome_Feriado = "Dia do Servidor Público Federal",
+				                        Tipo = "Ponto Facultativo",
+				                        Abrangencia = "Federal"
+				                    ],
+				                    [
+				                        Data = #date(Ano, 12, 24),
+				                        Nome_Feriado = "Véspera de Natal",
+				                        Tipo = "Ponto Facultativo",
+				                        Abrangencia = "Federal"
+				                    ],
+				                    [
+				                        Data = #date(Ano, 12, 31),
+				                        Nome_Feriado = "Véspera de Ano-Novo",
+				                        Tipo = "Ponto Facultativo",
+				                        Abrangencia = "Federal"
+				                    ]
+				                }
+				        )
+				    ),
+				
+				    TabelaPontosFixos = Table.FromRecords(RegistrosPontosFixos),
+				
+				    // ==========================================
+				    // CONSOLIDA TODAS AS DATAS
+				    // ==========================================
+				
+				    Consolidado = Table.Combine({
+				        TabelaFixos,
+				        TabelaMoveis,
+				        TabelaPontosFixos
+				    }),
+				
+				    // ==========================================
+				    // TIPOS
+				    // ==========================================
+				
+				    Tipos = Table.TransformColumnTypes(
+				        Consolidado,
+				        {
+				            {"Data", type date},
+				            {"Nome_Feriado", type text},
+				            {"Tipo", type text},
+				            {"Abrangencia", type text}
+				        }
+				    )
+				
+				in
+				    Tipos
+				```
+
+	annotation PBI_ResultType = Table
+

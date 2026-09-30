@@ -3,9 +3,9 @@ table _measures
 
 	measure HTML_Calendario =
 			
-			VAR AnoAtual  = SELECTEDVALUE('Calendar'[Ano],   YEAR(TODAY()))
-			VAR MesAtual  = SELECTEDVALUE('Calendar'[MesNum], MONTH(TODAY()))
-			VAR MesNome   = SELECTEDVALUE('Calendar'[Mes], FORMAT(TODAY(), "MMMM"))
+			VAR AnoAtual  = SELECTEDVALUE(tb_Calendar[Ano],   YEAR(TODAY()))
+			VAR MesAtual  = SELECTEDVALUE(tb_Calendar[MesNum], MONTH(TODAY()))
+			VAR MesNome   = SELECTEDVALUE(tb_Calendar[Mes], FORMAT(TODAY(), "MMMM"))
 			
 			VAR PrimeiroDia = WEEKDAY(DATE(AnoAtual, MesAtual, 1), 1) - 1
 			VAR TotalDias   = DAY(EOMONTH(DATE(AnoAtual, MesAtual, 1), 0))
@@ -16,9 +16,9 @@ table _measures
 			
 			VAR TabEventosMes =
 			    FILTER(
-			        Tb_Calendar_tipos,
-			        YEAR(Tb_Calendar_tipos[Data])  = AnoAtual &&
-			        MONTH(Tb_Calendar_tipos[Data]) = MesAtual
+			        tb_Feriados,
+			        YEAR(tb_Feriados[Data])  = AnoAtual &&
+			        MONTH(tb_Feriados[Data]) = MesAtual
 			    )
 			
 			VAR Blanks =
@@ -32,27 +32,22 @@ table _measures
 			    CONCATENATEX(
 			        GENERATESERIES(1, TotalDias),
 			        VAR D      = [Value]
-			        VAR EvsDia = FILTER(TabEventosMes, DAY(Tb_Calendar_tipos[Data]) = D)
+			        VAR EvsDia = FILTER(TabEventosMes, DAY(tb_Feriados[Data]) = D)
 			        VAR QtdEvs = COUNTROWS(EvsDia)
 			
-			        VAR TemFer  = COUNTROWS(FILTER(EvsDia, Tb_Calendar_tipos[Tipo] = "Feriado"))         > 0
-			        VAR TemAniv = COUNTROWS(FILTER(EvsDia, Tb_Calendar_tipos[Tipo] = "Aniversariante"))  > 0
-			        VAR TemPres = COUNTROWS(FILTER(EvsDia, Tb_Calendar_tipos[Tipo] = "Presencial"))      > 0
-			        VAR TemEv   = COUNTROWS(FILTER(EvsDia, Tb_Calendar_tipos[Tipo] = "Evento"))          > 0
+			        VAR TemFer  = COUNTROWS(FILTER(EvsDia, tb_Feriados[Tipo] = "Feriado"))         > 0
+			        VAR TemPF = COUNTROWS(FILTER(EvsDia, tb_Feriados[Tipo] = "Ponto Facultativo"))  > 0
 			
 			        VAR BgClass =
-			            IF(TemFer,  " has-feriado",
-			            IF(TemAniv && NOT(TemPres), " has-aniv",
-			            IF(TemPres, " has-presencial",
-			            IF(TemEv,   " has-evento", ""))))
+			            IF(TemFer,  " has-feriado"," has-pf")
 			
-			        VAR Top4 = TOPN(4, EvsDia, Tb_Calendar_tipos[Tipo], ASC)
+			        VAR Top4 = TOPN(4, EvsDia, tb_Feriados[Tipo], ASC)
 			        VAR Bolinhas =
 			            IF(QtdEvs > 0,
 			                "<div class='dots'>" &
 			                CONCATENATEX(
 			                    Top4,
-			                    "<span class='dot' style='background:" & IF(Tb_Calendar_tipos[Tipo] = "Aniversariante", "#f59e0b", Tb_Calendar_tipos[CorEvento]) & "'></span>",
+			                    "<span class='dot' style='background:" & IF(tb_Feriados[Tipo] = "Aniversariante", "#f59e0b", "#f59e0b") & "'></span>",
 			                    ""
 			                ) &
 			                "</div>",
@@ -64,9 +59,9 @@ table _measures
 			                CONCATENATEX(
 			                    EvsDia,
 			                    "<div class='tr'>" &
-			                    "<span class='dot' style='background:" & IF(Tb_Calendar_tipos[Tipo] = "Aniversariante", "#f59e0b", Tb_Calendar_tipos[CorEvento]) & "'></span>" &
-			                    "<strong>" & Tb_Calendar_tipos[Tipo] & ":</strong>" &
-			                    "<em>" & Tb_Calendar_tipos[Descricao] & "</em>" &
+			                    "<span class='dot' style='background:" & IF(tb_Feriados[Tipo] = "Aniversariante", "#f59e0b", "#f59e0b") & "'></span>" &
+			                    "<strong>" & tb_Feriados[Tipo] & ":</strong>" &
+			                    "<em>" & tb_Feriados[Nome_Feriado] & "</em>" &
 			                    "</div>",
 			                    ""
 			                ),

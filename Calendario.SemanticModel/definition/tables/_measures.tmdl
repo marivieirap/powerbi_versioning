@@ -1,0 +1,163 @@
+table _measures
+	lineageTag: dbc65ac2-3c9e-4cc1-abb6-df5a88e476ab
+
+	measure HTML_Calendario =
+			
+			VAR AnoAtual  = SELECTEDVALUE('Calendar'[Ano],   YEAR(TODAY()))
+			VAR MesAtual  = SELECTEDVALUE('Calendar'[MesNum], MONTH(TODAY()))
+			VAR MesNome   = SELECTEDVALUE('Calendar'[Mes], FORMAT(TODAY(), "MMMM"))
+			
+			VAR PrimeiroDia = WEEKDAY(DATE(AnoAtual, MesAtual, 1), 1) - 1
+			VAR TotalDias   = DAY(EOMONTH(DATE(AnoAtual, MesAtual, 1), 0))
+			VAR HojeNum     = IF(
+			    YEAR(TODAY()) = AnoAtual && MONTH(TODAY()) = MesAtual,
+			    DAY(TODAY()), -1
+			)
+			
+			VAR TabEventosMes =
+			    FILTER(
+			        Tb_Calendar_tipos,
+			        YEAR(Tb_Calendar_tipos[Data])  = AnoAtual &&
+			        MONTH(Tb_Calendar_tipos[Data]) = MesAtual
+			    )
+			
+			VAR Blanks =
+			    CONCATENATEX(
+			        GENERATESERIES(1, PrimeiroDia),
+			        "<div class='dc muted'></div>",
+			        ""
+			    )
+			
+			VAR Dias =
+			    CONCATENATEX(
+			        GENERATESERIES(1, TotalDias),
+			        VAR D      = [Value]
+			        VAR EvsDia = FILTER(TabEventosMes, DAY(Tb_Calendar_tipos[Data]) = D)
+			        VAR QtdEvs = COUNTROWS(EvsDia)
+			
+			        VAR TemFer  = COUNTROWS(FILTER(EvsDia, Tb_Calendar_tipos[Tipo] = "Feriado"))         > 0
+			        VAR TemAniv = COUNTROWS(FILTER(EvsDia, Tb_Calendar_tipos[Tipo] = "Aniversariante"))  > 0
+			        VAR TemPres = COUNTROWS(FILTER(EvsDia, Tb_Calendar_tipos[Tipo] = "Presencial"))      > 0
+			        VAR TemEv   = COUNTROWS(FILTER(EvsDia, Tb_Calendar_tipos[Tipo] = "Evento"))          > 0
+			
+			        VAR BgClass =
+			            IF(TemFer,  " has-feriado",
+			            IF(TemAniv && NOT(TemPres), " has-aniv",
+			            IF(TemPres, " has-presencial",
+			            IF(TemEv,   " has-evento", ""))))
+			
+			        VAR Top4 = TOPN(4, EvsDia, Tb_Calendar_tipos[Tipo], ASC)
+			        VAR Bolinhas =
+			            IF(QtdEvs > 0,
+			                "<div class='dots'>" &
+			                CONCATENATEX(
+			                    Top4,
+			                    "<span class='dot' style='background:" & IF(Tb_Calendar_tipos[Tipo] = "Aniversariante", "#f59e0b", Tb_Calendar_tipos[CorEvento]) & "'></span>",
+			                    ""
+			                ) &
+			                "</div>",
+			                ""
+			            )
+			
+			        VAR TipContent =
+			            IF(QtdEvs > 0,
+			                CONCATENATEX(
+			                    EvsDia,
+			                    "<div class='tr'>" &
+			                    "<span class='dot' style='background:" & IF(Tb_Calendar_tipos[Tipo] = "Aniversariante", "#f59e0b", Tb_Calendar_tipos[CorEvento]) & "'></span>" &
+			                    "<strong>" & Tb_Calendar_tipos[Tipo] & ":</strong>" &
+			                    "<em>" & Tb_Calendar_tipos[Descricao] & "</em>" &
+			                    "</div>",
+			                    ""
+			                ),
+			                ""
+			            )
+			        VAR Tooltip =
+			            IF(QtdEvs > 0,
+			                "<div class='tip'>" & TipContent & "</div>",
+			                ""
+			            )
+			
+			        VAR IsHoje = IF(D = HojeNum, " hoje", "")
+			
+			        RETURN
+			        "<div class='dc" & BgClass & IsHoje & "'>" &
+			            "<div class='num'>" & D & "</div>" &
+			            Bolinhas &
+			            Tooltip &
+			        "</div>",
+			        ""
+			    )
+			
+			VAR CSS =
+			"<style>
+			*{box-sizing:border-box;margin:0;padding:0}
+			body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;display:flex;justify-content:center;padding:20px;min-height:100vh}
+			.wrap{background:#fff;border-radius:20px;padding:22px 24px 18px;width:100%;max-width:540px;border:none;display:flex;flex-direction:column;gap:0}
+			.hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;min-height:44px}
+			.mes{font-size:20.8px;font-weight:600;color:#0f172a}
+			.mes em{color:#94a3b8;font-style:normal;font-weight:550;margin-left:4px}
+			.dow{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:6px}
+			.dow span{text-align:center;font-size:13.65px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#94a3b8;padding:6px 0}
+			.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+			.dc{position:relative;aspect-ratio:1;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:#fff;border:1px solid transparent;cursor:pointer;transition:all .16s ease}
+			.dc:hover{border-color:#eef1f6;transform:translateY(-1px);z-index:2}
+			.dc.muted{background:transparent;pointer-events:none}
+			.dc.hoje{background:#fff;border:1.5px solid #2563eb}
+			.dc.hoje .num{color:#2563eb;font-weight:700}
+			.dc.has-presencial{background:#dcfce7;border-color:#dcfce7}
+			.dc.has-presencial .num{color:#14532d}
+			.dc.has-presencial:hover{background:#bbf7d0}
+			.dc.has-feriado{background:#fee2e2;border-color:#fee2e2}
+			.dc.has-feriado .num{color:#7f1d1d}
+			.dc.has-feriado:hover{background:#fecaca}
+			.dc.has-aniv{background:#fef3c7;border-color:#fef3c7}
+			.dc.has-aniv .num{color:#78350f}
+			.dc.has-aniv:hover{background:#fde68a}
+			.dc.has-evento{background:#dbeafe;border-color:#dbeafe}
+			.dc.has-evento .num{color:#1e3a8a}
+			.dc.has-evento:hover{background:#bfdbfe}
+			.num{font-size:18.2px;font-weight:600;color:#475569;line-height:1}
+			.dots{display:flex;gap:3px;align-items:center}
+			.dot{width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0}
+			.tip{display:none;position:absolute;bottom:calc(100% + 9px);left:50%;transform:translateX(-50%) translateY(4px);background:#0f172a;color:#fff;padding:9px 13px;border-radius:10px;font-size:14.95px;font-weight:500;white-space:nowrap;z-index:30;pointer-events:none;min-width:170px;text-align:left;opacity:0;transition:opacity .16s,transform .16s}
+			.tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#0f172a}
+			.dc:hover .tip{display:block;opacity:1;transform:translateX(-50%) translateY(0)}
+			.tr{display:flex;align-items:center;gap:7px;padding:2px 0}
+			.tr .dot{width:7px;height:7px}
+			.tr strong{color:#fff;font-weight:600}
+			.tr em{color:#94a3b8;font-style:normal;font-weight:400}
+			.leg{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:14px;padding-top:13px;border-top:1px solid #eef1f6;justify-content:center}
+			.li{display:flex;align-items:center;gap:6px;font-size:14.95px;color:#475569;font-weight:500}
+			.ld{width:9px;height:9px;border-radius:50%}
+			</style>"
+			
+			RETURN
+			CSS &
+			"<body><div class='wrap'>" &
+			    "<div class='hdr'></div>" &
+			    "<div class='dow'>" &
+			        "<span>Dom</span><span>Seg</span><span>Ter</span>" &
+			        "<span>Qua</span><span>Qui</span><span>Sex</span><span>S&#225;b</span>" &
+			    "</div>" &
+			    "<div class='grid'>" & Blanks & Dias & "</div>" &
+			    "<div class='leg'>" &
+			        "<div class='li'><div class='ld' style='background:#16a34a'></div>Presencial</div>" &
+			        "<div class='li'><div class='ld' style='background:#2563eb'></div>Evento</div>" &
+			        "<div class='li'><div class='ld' style='background:#ef4444'></div>Feriado</div>" &
+			        "<div class='li'><div class='ld' style='background:#f59e0b'></div>Aniversariante</div>" &
+			    "</div>" &
+			"</div></body>"
+		lineageTag: 6af5ac99-fef0-411c-b2d6-0601697dd23d
+
+	partition _measures = m
+		mode: import
+		source =
+				let
+				  Origem = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45W8k0sykzMS1QISMwsS1SKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Dev = _t]),
+				    #"Colunas Removidas" = Table.RemoveColumns(Origem,{"Dev"})
+				in
+				  #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+

@@ -3,7 +3,7 @@ table tb_Feriados
 
 	column Data
 		dataType: dateTime
-		formatString: Long Date
+		formatString: Short Date
 		lineageTag: 69547949-f5bf-4ebc-b068-9048b2bb1e67
 		summarizeBy: none
 		sourceColumn: Data

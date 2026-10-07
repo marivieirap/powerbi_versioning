@@ -1,2 +1,1897 @@
 cultureInfo pt-BR
 
+	linguisticMetadata =
+			{
+			  "Version": "4.1.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "tb_calendar": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_Calendar"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "tb calendar": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "tb_Calendar": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "calendar": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "tb almanac": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "tb datebook": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "tb agenda": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "tb logbook": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "tb diary": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "almanac": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "datebook": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "agenda": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "logbook": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "diary": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        }
+			      ]
+			    },
+			    "tb_calendar.data": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_Calendar",
+			          "ConceptualProperty": "Data"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "data": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date": {
+			            "State": "Generated",
+			            "Weight": 0.7
+			          }
+			        },
+			        {
+			          "information": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "fact": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "info": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "statistic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "document": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "figure": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "record": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "tb_calendar.data.hierarquia_de_data": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_Calendar",
+			          "VariationSource": "Data",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "hierarquia de data": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "hierarquia de information": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de fact": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de info": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de statistic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de document": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "hierarquia de figure": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "hierarquia de record": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        }
+			      ]
+			    },
+			    "tb_calendar.data.ano": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_Calendar",
+			          "VariationSource": "Data",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Ano"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ano": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data ano": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "information ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "fact ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "info ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "statistic ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "document ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "figure ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "record ano": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ]
+			    },
+			    "tb_calendar.data.trimestre": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_Calendar",
+			          "VariationSource": "Data",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Trimestre"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "trimestre": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data trimestre": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "information trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "fact trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "info trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "statistic trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "document trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "figure trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "record trimestre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ]
+			    },
+			    "tb_calendar.data.mê": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_Calendar",
+			          "VariationSource": "Data",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Mês"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mê": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data mê": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "information mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "fact mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "info mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "statistic mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "document mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "figure mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "record mê": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ]
+			    },
+			    "tb_calendar.data.dia": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_Calendar",
+			          "VariationSource": "Data",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Dia"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dia": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "data dia": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "information dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "fact dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "info dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "statistic dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "document dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "figure dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "record dia": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ]
+			    },
+			    "tb_calendar.ano": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_Calendar",
+			          "ConceptualProperty": "Ano"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ano": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "tb_calendar.mes_num": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_Calendar",
+			          "ConceptualProperty": "MesNum"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mes num": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "me num": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "MesNum": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "me number": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        }
+			      ]
+			    },
+			    "tb_calendar.me": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_Calendar",
+			          "ConceptualProperty": "Mes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "me": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Mês": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "tb_calendar.dia": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_Calendar",
+			          "ConceptualProperty": "Dia"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dia": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "tb_calendar.nome_do_dia": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_Calendar",
+			          "ConceptualProperty": "Nome do dia"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nome do dia": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "entity__measure": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_measures"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "_measure": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "_ degree": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "_ quantity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "_ quota": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "_ extent": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "_ amount": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "_ portion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "_ ration": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "_ size": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "entity__measure.HTML_calendario": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_measures",
+			          "ConceptualProperty": "HTML_Calendario"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "HTML calendario": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "HTML_Calendario": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "tb_feriado": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_Feriados"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "tb feriado": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "tb_Feriados": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "tb_feriado.data": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_Feriados",
+			          "ConceptualProperty": "Data"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "data": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date": {
+			            "State": "Generated",
+			            "Weight": 0.7
+			          }
+			        },
+			        {
+			          "information": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "fact": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "info": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "statistic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "document": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "figure": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "record": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "tb_feriado.nome_feriado": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_Feriados",
+			          "ConceptualProperty": "Nome_Feriado"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nome feriado": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Nome_Feriado": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "tb_feriado.tipo": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_Feriados",
+			          "ConceptualProperty": "Tipo"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "tipo": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "tb_feriado.abrangencia": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "tb_Feriados",
+			          "ConceptualProperty": "Abrangencia"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "abrangencia": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    }
+			  },
+			  "Relationships": {
+			    "tb_calendar_has_data": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Calendar"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_calendar": {
+			          "Target": {
+			            "Entity": "tb_calendar"
+			          }
+			        },
+			        "tb_calendar.data": {
+			          "Target": {
+			            "Entity": "tb_calendar.data"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_calendar"
+			            },
+			            "Object": {
+			              "Role": "tb_calendar.data"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tb_calendars_have_data"
+			        }
+			      ]
+			    },
+			    "tb_calendar_has_ano": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Calendar"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_calendar": {
+			          "Target": {
+			            "Entity": "tb_calendar"
+			          }
+			        },
+			        "tb_calendar.ano": {
+			          "Target": {
+			            "Entity": "tb_calendar.ano"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_calendar"
+			            },
+			            "Object": {
+			              "Role": "tb_calendar.ano"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tb_calendars_have_anos"
+			        }
+			      ]
+			    },
+			    "tb_calendar_has_mes_num": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Calendar"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_calendar": {
+			          "Target": {
+			            "Entity": "tb_calendar"
+			          }
+			        },
+			        "tb_calendar.mes_num": {
+			          "Target": {
+			            "Entity": "tb_calendar.mes_num"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_calendar"
+			            },
+			            "Object": {
+			              "Role": "tb_calendar.mes_num"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tb_calendars_have_mes_nums"
+			        }
+			      ]
+			    },
+			    "tb_calendar_has_me": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Calendar"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_calendar": {
+			          "Target": {
+			            "Entity": "tb_calendar"
+			          }
+			        },
+			        "tb_calendar.me": {
+			          "Target": {
+			            "Entity": "tb_calendar.me"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_calendar"
+			            },
+			            "Object": {
+			              "Role": "tb_calendar.me"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tb_calendars_have_me"
+			        }
+			      ]
+			    },
+			    "tb_calendar_has_dia": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Calendar"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_calendar": {
+			          "Target": {
+			            "Entity": "tb_calendar"
+			          }
+			        },
+			        "tb_calendar.dia": {
+			          "Target": {
+			            "Entity": "tb_calendar.dia"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_calendar"
+			            },
+			            "Object": {
+			              "Role": "tb_calendar.dia"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tb_calendars_have_dias"
+			        }
+			      ]
+			    },
+			    "tb_calendar_has_nome_do_dia": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Calendar"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_calendar": {
+			          "Target": {
+			            "Entity": "tb_calendar"
+			          }
+			        },
+			        "tb_calendar.nome_do_dia": {
+			          "Target": {
+			            "Entity": "tb_calendar.nome_do_dia"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_calendar"
+			            },
+			            "Object": {
+			              "Role": "tb_calendar.nome_do_dia"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tb_calendars_have_nome_do_dias"
+			        }
+			      ]
+			    },
+			    "tb_calendar_has_entity__measure_HTML_calendario": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Calendar"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_calendar": {
+			          "Target": {
+			            "Entity": "tb_calendar"
+			          }
+			        },
+			        "entity__measure.HTML_calendario": {
+			          "Target": {
+			            "Entity": "entity__measure.HTML_calendario"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_calendar"
+			            },
+			            "Object": {
+			              "Role": "entity__measure.HTML_calendario"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tb_calendars_have_HTML_calendario"
+			        }
+			      ]
+			    },
+			    "tb_feriado_has_entity__measure_HTML_calendario": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Feriados"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_feriado": {
+			          "Target": {
+			            "Entity": "tb_feriado"
+			          }
+			        },
+			        "entity__measure.HTML_calendario": {
+			          "Target": {
+			            "Entity": "entity__measure.HTML_calendario"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_feriado"
+			            },
+			            "Object": {
+			              "Role": "entity__measure.HTML_calendario"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tb_feriados_have_HTML_calendario"
+			        }
+			      ]
+			    },
+			    "tb_feriado_has_data": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Feriados"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_feriado": {
+			          "Target": {
+			            "Entity": "tb_feriado"
+			          }
+			        },
+			        "tb_feriado.data": {
+			          "Target": {
+			            "Entity": "tb_feriado.data"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_feriado"
+			            },
+			            "Object": {
+			              "Role": "tb_feriado.data"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tb_feriados_have_data"
+			        }
+			      ]
+			    },
+			    "tb_feriado_has_nome_feriado": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Feriados"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_feriado": {
+			          "Target": {
+			            "Entity": "tb_feriado"
+			          }
+			        },
+			        "tb_feriado.nome_feriado": {
+			          "Target": {
+			            "Entity": "tb_feriado.nome_feriado"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_feriado"
+			            },
+			            "Object": {
+			              "Role": "tb_feriado.nome_feriado"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tb_feriados_have_nome_feriados"
+			        }
+			      ]
+			    },
+			    "tb_feriado_has_tipo": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Feriados"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_feriado": {
+			          "Target": {
+			            "Entity": "tb_feriado"
+			          }
+			        },
+			        "tb_feriado.tipo": {
+			          "Target": {
+			            "Entity": "tb_feriado.tipo"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_feriado"
+			            },
+			            "Object": {
+			              "Role": "tb_feriado.tipo"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tb_feriados_have_tipos"
+			        }
+			      ]
+			    },
+			    "tb_feriado_has_abrangencia": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Feriados"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_feriado": {
+			          "Target": {
+			            "Entity": "tb_feriado"
+			          }
+			        },
+			        "tb_feriado.abrangencia": {
+			          "Target": {
+			            "Entity": "tb_feriado.abrangencia"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_feriado"
+			            },
+			            "Object": {
+			              "Role": "tb_feriado.abrangencia"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tb_feriados_have_abrangencias"
+			        }
+			      ]
+			    },
+			    "tb_feriado_has_tb_calendar": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Feriados"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_feriado": {
+			          "Target": {
+			            "Entity": "tb_feriado"
+			          }
+			        },
+			        "tb_calendar": {
+			          "Target": {
+			            "Entity": "tb_calendar"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_feriado"
+			            },
+			            "Object": {
+			              "Role": "tb_calendar"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "tb_feriados_have_tb_calendars"
+			        }
+			      ]
+			    },
+			    "tb_calendar_data_has_hierarquia_de_data": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Calendar"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_calendar.data": {
+			          "Target": {
+			            "Entity": "tb_calendar.data"
+			          }
+			        },
+			        "tb_calendar.data.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tb_calendar.data.hierarquia_de_data"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_calendar.data"
+			            },
+			            "Object": {
+			              "Role": "tb_calendar.data.hierarquia_de_data"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "data_have_hierarquia_de_data"
+			        }
+			      ]
+			    },
+			    "tb_calendar_data_hierarquia_de_data_has_tb_calendar_data_ano": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Calendar"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_calendar.data.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tb_calendar.data.hierarquia_de_data"
+			          }
+			        },
+			        "tb_calendar.data.ano": {
+			          "Target": {
+			            "Entity": "tb_calendar.data.ano"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_calendar.data.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "tb_calendar.data.ano"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_anos"
+			        }
+			      ]
+			    },
+			    "tb_calendar_data_hierarquia_de_data_has_tb_calendar_data_trimestre": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Calendar"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_calendar.data.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tb_calendar.data.hierarquia_de_data"
+			          }
+			        },
+			        "tb_calendar.data.trimestre": {
+			          "Target": {
+			            "Entity": "tb_calendar.data.trimestre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_calendar.data.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "tb_calendar.data.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_trimestres"
+			        }
+			      ]
+			    },
+			    "tb_calendar_data_hierarquia_de_data_has_tb_calendar_data_mê": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Calendar"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_calendar.data.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tb_calendar.data.hierarquia_de_data"
+			          }
+			        },
+			        "tb_calendar.data.mê": {
+			          "Target": {
+			            "Entity": "tb_calendar.data.mê"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_calendar.data.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "tb_calendar.data.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_mê"
+			        }
+			      ]
+			    },
+			    "tb_calendar_data_hierarquia_de_data_has_tb_calendar_data_dia": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Calendar"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_calendar.data.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "tb_calendar.data.hierarquia_de_data"
+			          }
+			        },
+			        "tb_calendar.data.dia": {
+			          "Target": {
+			            "Entity": "tb_calendar.data.dia"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_calendar.data.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "tb_calendar.data.dia"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_dias"
+			        }
+			      ]
+			    },
+			    "tb_calendar_data_ano_has_tb_calendar_data_trimestre": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Calendar"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_calendar.data.ano": {
+			          "Target": {
+			            "Entity": "tb_calendar.data.ano"
+			          }
+			        },
+			        "tb_calendar.data.trimestre": {
+			          "Target": {
+			            "Entity": "tb_calendar.data.trimestre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_calendar.data.ano"
+			            },
+			            "Object": {
+			              "Role": "tb_calendar.data.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "anos_have_trimestres"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_calendar.data.trimestre"
+			            },
+			            "Object": {
+			              "Role": "tb_calendar.data.ano"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_have_anos"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "tb_calendar.data.trimestre"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "tb_calendar.data.ano"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_are_in_anos"
+			        }
+			      ]
+			    },
+			    "tb_calendar_data_trimestre_has_tb_calendar_data_mê": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Calendar"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_calendar.data.trimestre": {
+			          "Target": {
+			            "Entity": "tb_calendar.data.trimestre"
+			          }
+			        },
+			        "tb_calendar.data.mê": {
+			          "Target": {
+			            "Entity": "tb_calendar.data.mê"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_calendar.data.trimestre"
+			            },
+			            "Object": {
+			              "Role": "tb_calendar.data.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_have_mê"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_calendar.data.mê"
+			            },
+			            "Object": {
+			              "Role": "tb_calendar.data.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_have_trimestres"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "tb_calendar.data.mê"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "tb_calendar.data.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_are_in_trimestres"
+			        }
+			      ]
+			    },
+			    "tb_calendar_data_mê_has_tb_calendar_data_dia": {
+			      "Binding": {
+			        "ConceptualEntity": "tb_Calendar"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "tb_calendar.data.mê": {
+			          "Target": {
+			            "Entity": "tb_calendar.data.mê"
+			          }
+			        },
+			        "tb_calendar.data.dia": {
+			          "Target": {
+			            "Entity": "tb_calendar.data.dia"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_calendar.data.mê"
+			            },
+			            "Object": {
+			              "Role": "tb_calendar.data.dia"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_have_dias"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "tb_calendar.data.dia"
+			            },
+			            "Object": {
+			              "Role": "tb_calendar.data.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dias_have_mê"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "tb_calendar.data.dia"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "tb_calendar.data.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dias_are_in_mê"
+			        }
+			      ]
+			    }
+			  },
+			  "Agents": {
+			    "Internal": {
+			      "Version": "1.1.0"
+			    }
+			  }
+			}
+		contentType: json
+

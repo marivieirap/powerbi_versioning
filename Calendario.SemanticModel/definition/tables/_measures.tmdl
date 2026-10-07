@@ -35,20 +35,31 @@ table _measures
 			        VAR EvsDia = FILTER(TabEventosMes, DAY(tb_Feriados[Data]) = D)
 			        VAR QtdEvs = COUNTROWS(EvsDia)
 			
-			        VAR TemFer  = COUNTROWS(FILTER(EvsDia, tb_Feriados[Tipo] = "Feriado"))         > 0
-			        VAR TemPF = COUNTROWS(FILTER(EvsDia, tb_Feriados[Tipo] = "Ponto Facultativo"))  > 0
+			        VAR TemFer = COUNTROWS(FILTER(EvsDia, tb_Feriados[Tipo] = "Feriado")) > 0
+			        VAR TemPF  = COUNTROWS(FILTER(EvsDia, tb_Feriados[Tipo] = "Ponto Facultativo")) > 0
 			
+			        -- Feriado tem prioridade sobre Ponto Facultativo; dia sem evento fica sem classe
 			        VAR BgClass =
-			            IF(TemFer,  " has-feriado"," has-pf")
+			            SWITCH(
+			                TRUE(),
+			                TemFer, " has-feriado",
+			                TemPF,  " has-pf",
+			                ""
+			            )
 			
-			        VAR Top4 = TOPN(4, EvsDia, tb_Feriados[Tipo], ASC)
+			        -- Ordena por Tipo (Feriado antes de Ponto Facultativo) e limita a 4 bolinhas
+			        VAR Top4 = TOPN(4, EvsDia, tb_Feriados[Tipo], ASC, tb_Feriados[Nome_Feriado], ASC)
 			        VAR Bolinhas =
 			            IF(QtdEvs > 0,
 			                "<div class='dots'>" &
 			                CONCATENATEX(
 			                    Top4,
-			                    "<span class='dot' style='background:" & IF(tb_Feriados[Tipo] = "Aniversariante", "#f59e0b", "#f59e0b") & "'></span>",
-			                    ""
+			                    "<span class='dot' style='background:" &
+			                        IF(tb_Feriados[Tipo] = "Feriado", "#ef4444", "#f59e0b") &
+			                    "'></span>",
+			                    "",
+			                    tb_Feriados[Tipo], ASC,
+			                    tb_Feriados[Nome_Feriado], ASC
 			                ) &
 			                "</div>",
 			                ""
@@ -59,11 +70,15 @@ table _measures
 			                CONCATENATEX(
 			                    EvsDia,
 			                    "<div class='tr'>" &
-			                    "<span class='dot' style='background:" & IF(tb_Feriados[Tipo] = "Aniversariante", "#f59e0b", "#f59e0b") & "'></span>" &
+			                    "<span class='dot' style='background:" &
+			                        IF(tb_Feriados[Tipo] = "Feriado", "#ef4444", "#f59e0b") &
+			                    "'></span>" &
 			                    "<strong>" & tb_Feriados[Tipo] & ":</strong>" &
 			                    "<em>" & tb_Feriados[Nome_Feriado] & "</em>" &
 			                    "</div>",
-			                    ""
+			                    "",
+			                    tb_Feriados[Tipo], ASC,
+			                    tb_Feriados[Nome_Feriado], ASC
 			                ),
 			                ""
 			            )
@@ -98,20 +113,14 @@ table _measures
 			.dc{position:relative;aspect-ratio:1;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:#fff;border:1px solid transparent;cursor:pointer;transition:all .16s ease}
 			.dc:hover{border-color:#eef1f6;transform:translateY(-1px);z-index:2}
 			.dc.muted{background:transparent;pointer-events:none}
-			.dc.hoje{background:#fff;border:1.5px solid #2563eb}
-			.dc.hoje .num{color:#2563eb;font-weight:700}
-			.dc.has-presencial{background:#dcfce7;border-color:#dcfce7}
-			.dc.has-presencial .num{color:#14532d}
-			.dc.has-presencial:hover{background:#bbf7d0}
 			.dc.has-feriado{background:#fee2e2;border-color:#fee2e2}
 			.dc.has-feriado .num{color:#7f1d1d}
 			.dc.has-feriado:hover{background:#fecaca}
-			.dc.has-aniv{background:#fef3c7;border-color:#fef3c7}
-			.dc.has-aniv .num{color:#78350f}
-			.dc.has-aniv:hover{background:#fde68a}
-			.dc.has-evento{background:#dbeafe;border-color:#dbeafe}
-			.dc.has-evento .num{color:#1e3a8a}
-			.dc.has-evento:hover{background:#bfdbfe}
+			.dc.has-pf{background:#fef3c7;border-color:#fef3c7}
+			.dc.has-pf .num{color:#78350f}
+			.dc.has-pf:hover{background:#fde68a}
+			.dc.hoje{border:1.5px solid #2563eb}
+			.dc.hoje .num{color:#2563eb;font-weight:700}
 			.num{font-size:18.2px;font-weight:600;color:#475569;line-height:1}
 			.dots{display:flex;gap:3px;align-items:center}
 			.dot{width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0}
@@ -137,10 +146,8 @@ table _measures
 			    "</div>" &
 			    "<div class='grid'>" & Blanks & Dias & "</div>" &
 			    "<div class='leg'>" &
-			        "<div class='li'><div class='ld' style='background:#16a34a'></div>Presencial</div>" &
-			        "<div class='li'><div class='ld' style='background:#2563eb'></div>Evento</div>" &
 			        "<div class='li'><div class='ld' style='background:#ef4444'></div>Feriado</div>" &
-			        "<div class='li'><div class='ld' style='background:#f59e0b'></div>Aniversariante</div>" &
+			        "<div class='li'><div class='ld' style='background:#f59e0b'></div>Ponto Facultativo</div>" &
 			    "</div>" &
 			"</div></body>"
 		lineageTag: 6af5ac99-fef0-411c-b2d6-0601697dd23d

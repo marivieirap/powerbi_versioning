@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "1a82f7d2e15d6faef297",
   "position": {
-    "x": 255.52680221811457,
-    "y": 18.9279112754159,
-    "z": 2,
-    "height": 65.18518518518519,
+    "x": 255.28617976530202,
+    "y": 14.995641887468341,
+    "z": 2000,
+    "height": 65.485577743642267,
     "width": 150,
-    "tabOrder": 2
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "slicer",
@@ -257,27 +257,22 @@
             }
           }
         }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Ano'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "c7380915640ae0e810f1",
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "f758ad4cadb6945c8d8a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "tb_Calendar"
-              }
-            },
-            "Property": "Ano"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
-  }
+  "parentGroupName": "c7380915640ae0e810f1"
 }

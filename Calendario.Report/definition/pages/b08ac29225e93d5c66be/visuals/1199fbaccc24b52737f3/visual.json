@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "1199fbaccc24b52737f3",
   "position": {
-    "x": 416.41404805914965,
-    "y": 18.927911275415909,
-    "z": 1,
-    "height": 65.18518518518519,
+    "x": 416.17342560633716,
+    "y": 14.995641887468349,
+    "z": 1000,
+    "height": 65.485577743642267,
     "width": 150,
-    "tabOrder": 1
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "slicer",
@@ -233,27 +233,22 @@
             }
           }
         }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Mês'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "c7380915640ae0e810f1",
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "59356fb8820fedd0be9e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "tb_Calendar"
-              }
-            },
-            "Property": "Mes"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
-  }
+  "parentGroupName": "c7380915640ae0e810f1"
 }

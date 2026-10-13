@@ -5,9 +5,9 @@
     "x": 0,
     "y": 0,
     "z": 0,
-    "height": 654.19593345656187,
-    "width": 578.48428835489835,
-    "tabOrder": 0
+    "height": 653.99999999999989,
+    "width": 578.16209476309223,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "htmlContent443BE3AD55E043BF878BED274D3A6855",
@@ -80,14 +80,14 @@
             "right": {
               "expr": {
                 "Literal": {
-                  "Value": "20D"
+                  "Value": "0D"
                 }
               }
             },
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "20D"
+                  "Value": "0D"
                 }
               }
             }
@@ -100,14 +100,14 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Calendário'"
+                  "Value": "' Calendário'"
                 }
               }
             },
             "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             },
@@ -135,6 +135,20 @@
                   "Value": "'left'"
                 }
               }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           }
         }
@@ -148,6 +162,45 @@
                   "Value": "false"
                 }
               }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Calendário'"
+                }
+              }
+            },
+            "heading": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Heading3'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#475569'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
+              }
             }
           }
         }
@@ -156,6 +209,13 @@
         {
           "properties": {
             "spaceAbovePlotArea": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "spaceAboveSubtitle": {
               "expr": {
                 "Literal": {
                   "Value": "0D"
@@ -181,23 +241,5 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "c7380915640ae0e810f1",
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "9710a231564210026aa0",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_measures"
-              }
-            },
-            "Property": "HTML_Calendario"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
-  }
+  "parentGroupName": "c7380915640ae0e810f1"
 }

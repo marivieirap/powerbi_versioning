@@ -7,6 +7,187 @@ table _measures
 			VAR MesAtual  = SELECTEDVALUE(tb_Calendar[MesNum], MONTH(TODAY()))
 			VAR MesNome   = SELECTEDVALUE(tb_Calendar[Mes], FORMAT(TODAY(), "MMMM"))
 			
+			-- Tema fixo: claro
+			VAR cBg      = "#ffffff"
+			VAR cTxt     = "#475569"
+			VAR cTitulo  = "#475569"
+			VAR cMuted   = "#94a3b8"
+			VAR cBorda   = "#eef1f6"
+			VAR cFerBg   = "#fee2e2"
+			VAR cFerHov  = "#fecaca"
+			VAR cFerNum  = "#7f1d1d"
+			VAR cPfBg    = "#fef3c7"
+			VAR cPfHov   = "#fde68a"
+			VAR cPfNum   = "#78350f"
+			VAR cHoje    = "#2563eb"
+			VAR cTip     = "#0f172a"
+			VAR cTipTxt  = "#ffffff"
+			VAR cTipSub  = "#94a3b8"
+			
+			VAR PrimeiroDia = WEEKDAY(DATE(AnoAtual, MesAtual, 1), 1) - 1
+			VAR TotalDias   = DAY(EOMONTH(DATE(AnoAtual, MesAtual, 1), 0))
+			VAR HojeNum     = IF(
+			    YEAR(TODAY()) = AnoAtual && MONTH(TODAY()) = MesAtual,
+			    DAY(TODAY()), -1
+			)
+			
+			VAR TabEventosMes =
+			    FILTER(
+			        tb_Feriados,
+			        YEAR(tb_Feriados[Data])  = AnoAtual &&
+			        MONTH(tb_Feriados[Data]) = MesAtual
+			    )
+			
+			VAR Blanks =
+			    CONCATENATEX(
+			        GENERATESERIES(1, PrimeiroDia),
+			        "<div class='dc muted'></div>",
+			        ""
+			    )
+			
+			VAR Dias =
+			    CONCATENATEX(
+			        GENERATESERIES(1, TotalDias),
+			        VAR D      = [Value]
+			        VAR EvsDia = FILTER(TabEventosMes, DAY(tb_Feriados[Data]) = D)
+			        VAR QtdEvs = COUNTROWS(EvsDia)
+			
+			        VAR TemFer = COUNTROWS(FILTER(EvsDia, tb_Feriados[Tipo] = "Feriado")) > 0
+			        VAR TemPF  = COUNTROWS(FILTER(EvsDia, tb_Feriados[Tipo] = "Ponto Facultativo")) > 0
+			
+			        VAR BgClass =
+			            SWITCH(
+			                TRUE(),
+			                TemFer, " has-feriado",
+			                TemPF,  " has-pf",
+			                ""
+			            )
+			
+			        VAR Top4 = TOPN(4, EvsDia, tb_Feriados[Tipo], ASC, tb_Feriados[Nome_Feriado], ASC)
+			        VAR Bolinhas =
+			            IF(QtdEvs > 0,
+			                "<div class='dots'>" &
+			                CONCATENATEX(
+			                    Top4,
+			                    "<span class='dot' style='background:" &
+			                        IF(tb_Feriados[Tipo] = "Feriado", "#ef4444", "#f59e0b") &
+			                    "'></span>",
+			                    "",
+			                    tb_Feriados[Tipo], ASC,
+			                    tb_Feriados[Nome_Feriado], ASC
+			                ) &
+			                "</div>",
+			                ""
+			            )
+			
+			        VAR TipContent =
+			            IF(QtdEvs > 0,
+			                CONCATENATEX(
+			                    EvsDia,
+			                    "<div class='tr'>" &
+			                    "<span class='dot' style='background:" &
+			                        IF(tb_Feriados[Tipo] = "Feriado", "#ef4444", "#f59e0b") &
+			                    "'></span>" &
+			                    "<strong>" & tb_Feriados[Tipo] & ":</strong>" &
+			                    "<em>" & tb_Feriados[Nome_Feriado] & "</em>" &
+			                    "</div>",
+			                    "",
+			                    tb_Feriados[Tipo], ASC,
+			                    tb_Feriados[Nome_Feriado], ASC
+			                ),
+			                ""
+			            )
+			        VAR Tooltip =
+			            IF(QtdEvs > 0,
+			                "<div class='tip'>" & TipContent & "</div>",
+			                ""
+			            )
+			
+			        VAR IsHoje = IF(D = HojeNum, " hoje", "")
+			
+			        RETURN
+			        "<div class='dc" & BgClass & IsHoje & "'>" &
+			            "<div class='num'>" & D & "</div>" &
+			            Bolinhas &
+			            Tooltip &
+			        "</div>",
+			        ""
+			    )
+			
+			-- Toggle: somente o estado claro (bolinha à esquerda com o sol, lua apagada à direita)
+			VAR Toggle =
+			    "<div class='tg' style='background:#e2e8f0'>" &
+			        "<span style='width:16px'></span>" &
+			        "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='#6B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z'/></svg>" &
+			        "<div class='knob' style='left:3px;background:#ffffff'>" &
+			            "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='#F5A623' stroke-width='2' stroke-linecap='round'><circle cx='12' cy='12' r='4'/><path d='M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4'/></svg>" &
+			        "</div>" &
+			    "</div>"
+			
+			VAR CSS =
+			"<style>
+			*{box-sizing:border-box;margin:0;padding:0}
+			body{font-family:'Segoe UI',system-ui,sans-serif;background:" & cBg & ";display:flex;justify-content:center;padding:20px;min-height:100vh}
+			.wrap{background:" & cBg & ";border-radius:20px;padding:22px 24px 18px;width:100%;max-width:540px;border:none;display:flex;flex-direction:column;gap:0}
+			.hdr{display:flex;align-items:center;justify-content:flex-start;gap:12px;margin-bottom:16px;min-height:44px}
+			.tg{position:relative;flex-shrink:0;width:64px;height:32px;border-radius:16px;display:flex;align-items:center;justify-content:space-between;padding:0 8px;margin:0}
+			.knob{position:absolute;top:3px;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+			.mes{font-size:20.8px;font-weight:600;color:" & cTitulo & "}
+			.mes em{color:" & cMuted & ";font-style:normal;font-weight:550;margin-left:4px}
+			.dow{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:6px}
+			.dow span{text-align:center;font-size:13.65px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:" & cMuted & ";padding:6px 0}
+			.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+			.dc{position:relative;aspect-ratio:1;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:" & cBg & ";border:1px solid transparent;cursor:pointer;transition:all .16s ease}
+			.dc:hover{border-color:" & cBorda & ";transform:translateY(-1px);z-index:2}
+			.dc.muted{background:transparent;pointer-events:none}
+			.dc.has-feriado{background:" & cFerBg & ";border-color:" & cFerBg & "}
+			.dc.has-feriado .num{color:" & cFerNum & "}
+			.dc.has-feriado:hover{background:" & cFerHov & "}
+			.dc.has-pf{background:" & cPfBg & ";border-color:" & cPfBg & "}
+			.dc.has-pf .num{color:" & cPfNum & "}
+			.dc.has-pf:hover{background:" & cPfHov & "}
+			.dc.hoje{border:1.5px solid " & cHoje & "}
+			.dc.hoje .num{color:" & cHoje & ";font-weight:700}
+			.num{font-size:18.2px;font-weight:600;color:" & cTxt & ";line-height:1}
+			.dots{display:flex;gap:3px;align-items:center}
+			.dot{width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0}
+			.tip{display:none;position:absolute;bottom:calc(100% + 9px);left:50%;transform:translateX(-50%) translateY(4px);background:" & cTip & ";color:" & cTipTxt & ";padding:9px 13px;border-radius:10px;font-size:14.95px;font-weight:500;white-space:nowrap;z-index:30;pointer-events:none;min-width:170px;text-align:left;opacity:0;transition:opacity .16s,transform .16s}
+			.tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:" & cTip & "}
+			.dc:hover .tip{display:block;opacity:1;transform:translateX(-50%) translateY(0)}
+			.tr{display:flex;align-items:center;gap:7px;padding:2px 0}
+			.tr .dot{width:7px;height:7px}
+			.tr strong{color:" & cTipTxt & ";font-weight:600}
+			.tr em{color:" & cTipSub & ";font-style:normal;font-weight:400}
+			.leg{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:14px;padding-top:13px;border-top:1px solid " & cBorda & ";justify-content:center}
+			.li{display:flex;align-items:center;gap:6px;font-size:14.95px;color:" & cTxt & ";font-weight:500}
+			.ld{width:9px;height:9px;border-radius:50%}
+			</style>"
+			
+			RETURN
+			CSS &
+			"<body><div class='wrap'>" &
+			    "<div class='hdr'>" &
+			        Toggle &
+			        "<div class='mes'>Calendário</div>" &
+			    "</div>" &
+			    "<div class='dow'>" &
+			        "<span>Dom</span><span>Seg</span><span>Ter</span>" &
+			        "<span>Qua</span><span>Qui</span><span>Sex</span><span>S&#225;b</span>" &
+			    "</div>" &
+			    "<div class='grid'>" & Blanks & Dias & "</div>" &
+			    "<div class='leg'>" &
+			        "<div class='li'><div class='ld' style='background:#ef4444'></div>Feriado</div>" &
+			        "<div class='li'><div class='ld' style='background:#f59e0b'></div>Ponto Facultativo</div>" &
+			    "</div>" &
+			"</div></body>"
+		lineageTag: 6af5ac99-fef0-411c-b2d6-0601697dd23d
+
+	measure HTML_Calendario_Dark = ```
+			
+			VAR AnoAtual  = SELECTEDVALUE(tb_Calendar[Ano],   YEAR(TODAY()))
+			VAR MesAtual  = SELECTEDVALUE(tb_Calendar[MesNum], MONTH(TODAY()))
+			VAR MesNome   = SELECTEDVALUE(tb_Calendar[Mes], FORMAT(TODAY(), "MMMM"))
+			
 			VAR PrimeiroDia = WEEKDAY(DATE(AnoAtual, MesAtual, 1), 1) - 1
 			VAR TotalDias   = DAY(EOMONTH(DATE(AnoAtual, MesAtual, 1), 0))
 			VAR HojeNum     = IF(
@@ -99,47 +280,62 @@ table _measures
 			        ""
 			    )
 			
+			-- Toggle: somente o estado escuro (sol aceso à esquerda, bolinha com a lua à direita)
+			VAR Toggle =
+			    "<div class='tg' style='background:#334155'>" &
+			        "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='#F5A623' stroke-width='2' stroke-linecap='round'><circle cx='12' cy='12' r='4'/><path d='M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4'/></svg>" &
+			        "<span style='width:16px'></span>" &
+			        "<div class='knob' style='left:35px;background:#0f172a'>" &
+			            "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='#e2e8f0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z'/></svg>" &
+			        "</div>" &
+			    "</div>"
+			
 			VAR CSS =
 			"<style>
 			*{box-sizing:border-box;margin:0;padding:0}
-			body{font-family:'Segoe UI',system-ui,sans-serif;background:#fff;display:flex;justify-content:center;padding:20px;min-height:100vh}
-			.wrap{background:#fff;border-radius:20px;padding:22px 24px 18px;width:100%;max-width:540px;border:none;display:flex;flex-direction:column;gap:0}
-			.hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;min-height:44px}
-			.mes{font-size:20.8px;font-weight:600;color:#0f172a}
-			.mes em{color:#94a3b8;font-style:normal;font-weight:550;margin-left:4px}
+			body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f172a;display:flex;justify-content:center;padding:20px;min-height:100vh}
+			.wrap{background:#0f172a;border-radius:20px;padding:22px 24px 18px;width:100%;max-width:540px;border:none;display:flex;flex-direction:column;gap:0}
+			.hdr{display:flex;align-items:center;justify-content:flex-start;gap:12px;margin-bottom:16px;min-height:44px}
+			.tg{position:relative;flex-shrink:0;width:64px;height:32px;border-radius:16px;display:flex;align-items:center;justify-content:space-between;padding:0 8px;margin:0}
+			.knob{position:absolute;top:3px;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+			.mes{font-size:20.8px;font-weight:600;color:#f1f5f9;text-transform:capitalize}
+			.mes em{color:#64748b;font-style:normal;font-weight:550;margin-left:4px}
 			.dow{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:6px}
-			.dow span{text-align:center;font-size:13.65px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#94a3b8;padding:6px 0}
+			.dow span{text-align:center;font-size:13.65px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#64748b;padding:6px 0}
 			.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
-			.dc{position:relative;aspect-ratio:1;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:#fff;border:1px solid transparent;cursor:pointer;transition:all .16s ease}
-			.dc:hover{border-color:#eef1f6;transform:translateY(-1px);z-index:2}
+			.dc{position:relative;aspect-ratio:1;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:transparent;border:1px solid transparent;cursor:pointer;transition:all .16s ease}
+			.dc:hover{border-color:#334155;transform:translateY(-1px);z-index:2}
 			.dc.muted{background:transparent;pointer-events:none}
-			.dc.has-feriado{background:#fee2e2;border-color:#fee2e2}
-			.dc.has-feriado .num{color:#7f1d1d}
-			.dc.has-feriado:hover{background:#fecaca}
-			.dc.has-pf{background:#fef3c7;border-color:#fef3c7}
-			.dc.has-pf .num{color:#78350f}
-			.dc.has-pf:hover{background:#fde68a}
-			.dc.hoje{border:1.5px solid #2563eb}
-			.dc.hoje .num{color:#2563eb;font-weight:700}
-			.num{font-size:18.2px;font-weight:600;color:#475569;line-height:1}
+			.dc.has-feriado{background:rgba(239,68,68,.18);border-color:rgba(239,68,68,.35)}
+			.dc.has-feriado .num{color:#fca5a5}
+			.dc.has-feriado:hover{background:rgba(239,68,68,.28)}
+			.dc.has-pf{background:rgba(245,158,11,.16);border-color:rgba(245,158,11,.35)}
+			.dc.has-pf .num{color:#fcd34d}
+			.dc.has-pf:hover{background:rgba(245,158,11,.26)}
+			.dc.hoje{border:1.5px solid #60a5fa}
+			.dc.hoje .num{color:#60a5fa;font-weight:700}
+			.num{font-size:18.2px;font-weight:600;color:#cbd5e1;line-height:1}
 			.dots{display:flex;gap:3px;align-items:center}
 			.dot{width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0}
-			.tip{display:none;position:absolute;bottom:calc(100% + 9px);left:50%;transform:translateX(-50%) translateY(4px);background:#0f172a;color:#fff;padding:9px 13px;border-radius:10px;font-size:14.95px;font-weight:500;white-space:nowrap;z-index:30;pointer-events:none;min-width:170px;text-align:left;opacity:0;transition:opacity .16s,transform .16s}
-			.tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#0f172a}
+			.tip{display:none;position:absolute;bottom:calc(100% + 9px);left:50%;transform:translateX(-50%) translateY(4px);background:#334155;color:#f8fafc;padding:9px 13px;border-radius:10px;font-size:14.95px;font-weight:500;white-space:nowrap;z-index:30;pointer-events:none;min-width:170px;text-align:left;opacity:0;box-shadow:0 8px 24px rgba(0,0,0,.45);transition:opacity .16s,transform .16s}
+			.tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#334155}
 			.dc:hover .tip{display:block;opacity:1;transform:translateX(-50%) translateY(0)}
 			.tr{display:flex;align-items:center;gap:7px;padding:2px 0}
 			.tr .dot{width:7px;height:7px}
-			.tr strong{color:#fff;font-weight:600}
-			.tr em{color:#94a3b8;font-style:normal;font-weight:400}
-			.leg{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:14px;padding-top:13px;border-top:1px solid #eef1f6;justify-content:center}
-			.li{display:flex;align-items:center;gap:6px;font-size:14.95px;color:#475569;font-weight:500}
+			.tr strong{color:#f8fafc;font-weight:600}
+			.tr em{color:#cbd5e1;font-style:normal;font-weight:400}
+			.leg{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:14px;padding-top:13px;border-top:1px solid #1e293b;justify-content:center}
+			.li{display:flex;align-items:center;gap:6px;font-size:14.95px;color:#94a3b8;font-weight:500}
 			.ld{width:9px;height:9px;border-radius:50%}
 			</style>"
 			
 			RETURN
 			CSS &
 			"<body><div class='wrap'>" &
-			    "<div class='hdr'></div>" &
+			    "<div class='hdr'>" &
+			        Toggle &
+			        "<div class='mes'>Calendário</div>" &
+			    "</div>" &
 			    "<div class='dow'>" &
 			        "<span>Dom</span><span>Seg</span><span>Ter</span>" &
 			        "<span>Qua</span><span>Qui</span><span>Sex</span><span>S&#225;b</span>" &
@@ -150,7 +346,159 @@ table _measures
 			        "<div class='li'><div class='ld' style='background:#f59e0b'></div>Ponto Facultativo</div>" &
 			    "</div>" &
 			"</div></body>"
-		lineageTag: 6af5ac99-fef0-411c-b2d6-0601697dd23d
+			
+			
+			
+			// HTML_Calendario_Dark = 
+			// VAR AnoAtual  = SELECTEDVALUE(tb_Calendar[Ano],   YEAR(TODAY()))
+			// VAR MesAtual  = SELECTEDVALUE(tb_Calendar[MesNum], MONTH(TODAY()))
+			// VAR MesNome   = SELECTEDVALUE(tb_Calendar[Mes], FORMAT(TODAY(), "MMMM"))
+			
+			// VAR PrimeiroDia = WEEKDAY(DATE(AnoAtual, MesAtual, 1), 1) - 1
+			// VAR TotalDias   = DAY(EOMONTH(DATE(AnoAtual, MesAtual, 1), 0))
+			// VAR HojeNum     = IF(
+			//     YEAR(TODAY()) = AnoAtual && MONTH(TODAY()) = MesAtual,
+			//     DAY(TODAY()), -1
+			// )
+			
+			// VAR TabEventosMes =
+			//     FILTER(
+			//         tb_Feriados,
+			//         YEAR(tb_Feriados[Data])  = AnoAtual &&
+			//         MONTH(tb_Feriados[Data]) = MesAtual
+			//     )
+			
+			// VAR Blanks =
+			//     CONCATENATEX(
+			//         GENERATESERIES(1, PrimeiroDia),
+			//         "<div class='dc muted'></div>",
+			//         ""
+			//     )
+			
+			// VAR Dias =
+			//     CONCATENATEX(
+			//         GENERATESERIES(1, TotalDias),
+			//         VAR D      = [Value]
+			//         VAR EvsDia = FILTER(TabEventosMes, DAY(tb_Feriados[Data]) = D)
+			//         VAR QtdEvs = COUNTROWS(EvsDia)
+			
+			//         VAR TemFer = COUNTROWS(FILTER(EvsDia, tb_Feriados[Tipo] = "Feriado")) > 0
+			//         VAR TemPF  = COUNTROWS(FILTER(EvsDia, tb_Feriados[Tipo] = "Ponto Facultativo")) > 0
+			
+			//         -- Feriado tem prioridade sobre Ponto Facultativo; dia sem evento fica sem classe
+			//         VAR BgClass =
+			//             SWITCH(
+			//                 TRUE(),
+			//                 TemFer, " has-feriado",
+			//                 TemPF,  " has-pf",
+			//                 ""
+			//             )
+			
+			//         -- Ordena por Tipo (Feriado antes de Ponto Facultativo) e limita a 4 bolinhas
+			//         VAR Top4 = TOPN(4, EvsDia, tb_Feriados[Tipo], ASC, tb_Feriados[Nome_Feriado], ASC)
+			//         VAR Bolinhas =
+			//             IF(QtdEvs > 0,
+			//                 "<div class='dots'>" &
+			//                 CONCATENATEX(
+			//                     Top4,
+			//                     "<span class='dot' style='background:" &
+			//                         IF(tb_Feriados[Tipo] = "Feriado", "#ef4444", "#f59e0b") &
+			//                     "'></span>",
+			//                     "",
+			//                     tb_Feriados[Tipo], ASC,
+			//                     tb_Feriados[Nome_Feriado], ASC
+			//                 ) &
+			//                 "</div>",
+			//                 ""
+			//             )
+			
+			//         VAR TipContent =
+			//             IF(QtdEvs > 0,
+			//                 CONCATENATEX(
+			//                     EvsDia,
+			//                     "<div class='tr'>" &
+			//                     "<span class='dot' style='background:" &
+			//                         IF(tb_Feriados[Tipo] = "Feriado", "#ef4444", "#f59e0b") &
+			//                     "'></span>" &
+			//                     "<strong>" & tb_Feriados[Tipo] & ":</strong>" &
+			//                     "<em>" & tb_Feriados[Nome_Feriado] & "</em>" &
+			//                     "</div>",
+			//                     "",
+			//                     tb_Feriados[Tipo], ASC,
+			//                     tb_Feriados[Nome_Feriado], ASC
+			//                 ),
+			//                 ""
+			//             )
+			//         VAR Tooltip =
+			//             IF(QtdEvs > 0,
+			//                 "<div class='tip'>" & TipContent & "</div>",
+			//                 ""
+			//             )
+			
+			//         VAR IsHoje = IF(D = HojeNum, " hoje", "")
+			
+			//         RETURN
+			//         "<div class='dc" & BgClass & IsHoje & "'>" &
+			//             "<div class='num'>" & D & "</div>" &
+			//             Bolinhas &
+			//             Tooltip &
+			//         "</div>",
+			//         ""
+			//     )
+			
+			// VAR CSS =
+			// "<style>
+			// *{box-sizing:border-box;margin:0;padding:0}
+			// body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f172a;display:flex;justify-content:center;padding:20px;min-height:100vh}
+			// .wrap{background:#0f172a;border-radius:20px;padding:22px 24px 18px;width:100%;max-width:540px;border:none;display:flex;flex-direction:column;gap:0}
+			// .hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;min-height:44px}
+			// .mes{font-size:20.8px;font-weight:600;color:#f1f5f9;text-transform:capitalize}
+			// .mes em{color:#64748b;font-style:normal;font-weight:550;margin-left:4px}
+			// .dow{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:6px}
+			// .dow span{text-align:center;font-size:13.65px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#64748b;padding:6px 0}
+			// .grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+			// .dc{position:relative;aspect-ratio:1;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:transparent;border:1px solid transparent;cursor:pointer;transition:all .16s ease}
+			// .dc:hover{border-color:#334155;transform:translateY(-1px);z-index:2}
+			// .dc.muted{background:transparent;pointer-events:none}
+			// .dc.has-feriado{background:rgba(239,68,68,.18);border-color:rgba(239,68,68,.35)}
+			// .dc.has-feriado .num{color:#fca5a5}
+			// .dc.has-feriado:hover{background:rgba(239,68,68,.28)}
+			// .dc.has-pf{background:rgba(245,158,11,.16);border-color:rgba(245,158,11,.35)}
+			// .dc.has-pf .num{color:#fcd34d}
+			// .dc.has-pf:hover{background:rgba(245,158,11,.26)}
+			// .dc.hoje{border:1.5px solid #60a5fa}
+			// .dc.hoje .num{color:#60a5fa;font-weight:700}
+			// .num{font-size:18.2px;font-weight:600;color:#cbd5e1;line-height:1}
+			// .dots{display:flex;gap:3px;align-items:center}
+			// .dot{width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0}
+			// .tip{display:none;position:absolute;bottom:calc(100% + 9px);left:50%;transform:translateX(-50%) translateY(4px);background:#334155;color:#f8fafc;padding:9px 13px;border-radius:10px;font-size:14.95px;font-weight:500;white-space:nowrap;z-index:30;pointer-events:none;min-width:170px;text-align:left;opacity:0;box-shadow:0 8px 24px rgba(0,0,0,.45);transition:opacity .16s,transform .16s}
+			// .tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#334155}
+			// .dc:hover .tip{display:block;opacity:1;transform:translateX(-50%) translateY(0)}
+			// .tr{display:flex;align-items:center;gap:7px;padding:2px 0}
+			// .tr .dot{width:7px;height:7px}
+			// .tr strong{color:#f8fafc;font-weight:600}
+			// .tr em{color:#cbd5e1;font-style:normal;font-weight:400}
+			// .leg{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:14px;padding-top:13px;border-top:1px solid #1e293b;justify-content:center}
+			// .li{display:flex;align-items:center;gap:6px;font-size:14.95px;color:#94a3b8;font-weight:500}
+			// .ld{width:9px;height:9px;border-radius:50%}
+			// </style>"
+			
+			// RETURN
+			// CSS &
+			// "<body><div class='wrap'>" &
+			//     "<div class='hdr'></div>" &
+			//     "<div class='dow'>" &
+			//         "<span>Dom</span><span>Seg</span><span>Ter</span>" &
+			//         "<span>Qua</span><span>Qui</span><span>Sex</span><span>S&#225;b</span>" &
+			//     "</div>" &
+			//     "<div class='grid'>" & Blanks & Dias & "</div>" &
+			//     "<div class='leg'>" &
+			//         "<div class='li'><div class='ld' style='background:#ef4444'></div>Feriado</div>" &
+			//         "<div class='li'><div class='ld' style='background:#f59e0b'></div>Ponto Facultativo</div>" &
+			//     "</div>" &
+			// "</div></body>"
+			```
+		lineageTag: 3ecbb07c-eb30-421e-b97a-6b559cf14f9a
 
 	partition _measures = m
 		mode: import

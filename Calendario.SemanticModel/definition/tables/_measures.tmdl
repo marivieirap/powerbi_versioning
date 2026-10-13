@@ -182,7 +182,7 @@ table _measures
 			"</div></body>"
 		lineageTag: 6af5ac99-fef0-411c-b2d6-0601697dd23d
 
-	measure HTML_Calendario_Dark = ```
+	measure HTML_Calendario_Dark_default = ```
 			
 			VAR AnoAtual  = SELECTEDVALUE(tb_Calendar[Ano],   YEAR(TODAY()))
 			VAR MesAtual  = SELECTEDVALUE(tb_Calendar[MesNum], MONTH(TODAY()))

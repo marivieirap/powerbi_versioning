@@ -70,8 +70,8 @@ Each commit provides a snapshot of the project's tracked files, making it easier
 
 Detailed documentation is available in both languages:
 
-- 🇧🇷 [Português (Brasil) — Guia de versionamento com Git](docs/versionamento-git-pt-br.md)
-- 🇺🇸 [English (US) — Git Versioning Guide](docs/git-versioning-en.md)
+- 🇧🇷 [Português (Brasil) — Guia de versionamento com Git](Documentation/versionamento-git-pt-br.md)
+- 🇺🇸 [English (US) — Git Versioning Guide](Documentation/git-versioning-en-us.md)
 
 ## References
 

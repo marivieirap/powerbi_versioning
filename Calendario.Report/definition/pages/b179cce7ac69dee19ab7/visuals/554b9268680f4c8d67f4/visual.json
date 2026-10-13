@@ -23,11 +23,11 @@
                       "Entity": "_measures"
                     }
                   },
-                  "Property": "HTML_Calendario_Dark"
+                  "Property": "HTML_Calendario_Dark_default"
                 }
               },
               "queryRef": "_measures.HTML_Calendario_Dark",
-              "nativeQueryRef": "HTML_Calendario_Dark"
+              "nativeQueryRef": "HTML_Calendario_Dark_default"
             }
           ]
         }

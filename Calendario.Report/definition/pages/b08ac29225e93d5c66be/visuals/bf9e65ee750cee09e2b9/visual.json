@@ -23,7 +23,7 @@
                       "Entity": "_measures"
                     }
                   },
-                  "Property": "HTML_Calendario_default"
+                  "Property": "HTML_Calendario"
                 }
               },
               "queryRef": "_measures.HTML_Calendario",

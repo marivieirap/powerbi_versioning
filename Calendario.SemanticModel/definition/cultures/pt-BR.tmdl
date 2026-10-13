@@ -903,7 +903,7 @@ cultureInfo pt-BR
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "_measures",
-			          "ConceptualProperty": "HTML_Calendario"
+			          "ConceptualProperty": "HTML_Calendario_default"
 			        }
 			      },
 			      "State": "Generated",
